@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace OnlineLibrary.Models
 {
-    public class Member
+    public class Member :User
     {
-        public int UserId { get; set; }
         public string Membership_Id { get; set; } = string.Empty;
 
         public string Address { get; set; } = string.Empty;

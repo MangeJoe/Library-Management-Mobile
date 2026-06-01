@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace OnlineLibrary.Models
 {
-    public class Librarian
+    public class Librarian: User
     {
-
-        public int Librarian_Id { get; set; }
         public DateTime HiredDate { get; set; }
 
         public string Shift { get; set; } = string.Empty;

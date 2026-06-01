@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace OnlineLibrary.Models
 {
-    public class Manager
+    public class Manager:User
     {
-        public int Manager_Id { get; set; }
         public string OfficeLocation { get; set; } = string.Empty;
     }
 }
