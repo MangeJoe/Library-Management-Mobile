@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineLibrary.ViewModels
 {
-    internal class RegisterViewModel
+    public class RegisterViewModel
     {
     }
 }
