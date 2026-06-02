@@ -1,4 +1,5 @@
-﻿using OnlineLibrary.Models;
+﻿using OnlineLibrary.DTOs;
+using OnlineLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,8 @@ namespace OnlineLibrary.Services
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
-                await Shell.Current.DisplayAlert("error",ex.Message,"Ok");
                 return false;
             }
            
@@ -56,19 +56,81 @@ namespace OnlineLibrary.Services
 
         }
 
-        Task IUserService.GetUserById(int id)
+        async Task<GetByIdDTO> IUserService.GetUserById(int id)
         {
-            throw new NotImplementedException();
+
+           return  await _httpClient.GetFromJsonAsync<GetByIdDTO>($"/api/User/{id}");
+           
         }
 
-        Task IUserService.GetUsers()
+        async Task<List<Member>> IUserService.GetUsers()
         {
-            throw new NotImplementedException();
+            return await _httpClient.GetFromJsonAsync<List<Member>>("/api/User");
         }
 
-        Task IUserService.UpdateUser(int id, OverallUser Ouser)
+        async Task<GetByIdDTO> IUserService.Login(string membershipId, string password)
         {
-            throw new NotImplementedException();
+           
+                LoginDTO login = new()
+                {
+                    Membership_Id = membershipId,
+                    Password = password
+                };
+                var response = await _httpClient.PostAsJsonAsync("/api/User/Login", login);
+            if (response.IsSuccessStatusCode)
+            {
+                var newResponse=await response.Content.ReadFromJsonAsync<GetByIdDTO>();
+                if (newResponse != null)
+                {
+                    GetByIdDTO responseDTO = new()
+                    {
+                        Id = newResponse.Id
+                    };
+                    return responseDTO;
+                }
+                return new GetByIdDTO()
+                {
+                    Id = 0
+                };
+            }
+            return new GetByIdDTO()
+            {
+                Id = 0
+            };
+
+
+        }
+
+        async Task<UpdateUserDTO> IUserService.UpdateUser(int id, OverallUser Ouser)
+        {
+
+            
+                var response = await _httpClient.PutAsJsonAsync($"/api/User/{id}", Ouser);
+                if (response.IsSuccessStatusCode)
+                {
+                    var contentResp = await response.Content.ReadFromJsonAsync<UpdateUserDTO>();
+                    if (contentResp != null)
+                    {
+                        UpdateUserDTO updateUserDTO = new()
+                        {
+                            Id = contentResp.Id,
+                            Success = contentResp.Success,
+                        };
+
+                        return updateUserDTO;
+                    }
+                    return new UpdateUserDTO()
+                    {
+                        Id = 0,
+                        Success =false,
+                    }; 
+                }
+                return new UpdateUserDTO()
+                {
+                    Id = 0,
+                    Success = false,
+                };
+           
         }
     }
 }
