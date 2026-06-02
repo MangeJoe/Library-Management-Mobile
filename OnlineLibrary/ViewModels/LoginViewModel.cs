@@ -1,6 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Android.Views.Accessibility;
+using CommunityToolkit.Mvvm.Input;
+using OnlineLibrary.DTOs;
 using OnlineLibrary.Models;
 using OnlineLibrary.Services;
+using OnlineLibrary.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +32,20 @@ namespace OnlineLibrary.ViewModels
 
         private async Task Login()
         {
-            
+            LoginDTO loginDTO = new()
+            {
+                Membership_Id = member.Membership_Id,
+                Password = member.Password,
+            };
+            GetByIdDTO getByIdDTO = await _service.Login(loginDTO);
+
+            if (getByIdDTO != null && getByIdDTO.Id != 0)
+            {
+                await Shell.Current.GoToAsync($"{nameof(IndexPage)}?userId={getByIdDTO.Id}");
+            }
+            await Shell.Current.DisplayAlert("error", "password or membershipId is incorrect", "Ok");
         }
+
+        
     }
 }
