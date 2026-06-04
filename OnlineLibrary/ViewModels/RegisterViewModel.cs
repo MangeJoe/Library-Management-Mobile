@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using OnlineLibrary.Models;
 using OnlineLibrary.Services;
+using OnlineLibrary.Views;
 using System.Windows.Input;
 
 
@@ -145,7 +146,7 @@ namespace OnlineLibrary.ViewModels
 
         private async Task CancelCreation()
         {
-            await Shell.Current.GoToAsync("..");
+           // await Shell.Current.GoToAsync("");
         }
 
         private async Task RegisterUser()
@@ -168,6 +169,7 @@ namespace OnlineLibrary.ViewModels
                 if (response)
                 {
                     await Shell.Current.DisplayAlert("Success", "Member is created Successfully", "Ok");
+                    await Shell.Current.GoToAsync(nameof(LoginPage));
                 }
                 else
                 {
