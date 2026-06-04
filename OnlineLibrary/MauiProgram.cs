@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using OnlineLibrary.ViewModels;
+using OnlineLibrary.Views;
 
 namespace OnlineLibrary
 {
@@ -14,8 +16,15 @@ namespace OnlineLibrary
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            /* f your ViewModel has a parameterless constructor and does not require complex services, 
+             * you can instantiate it directly inside your XAML layout file*/
 
             builder.Services.AddSingleton<HttpClient>();
+
+            /* f your ViewModel has a parameterless constructor and does not require complex services, 
+           * you can instantiate it directly inside your XAML layout file*/
+            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<RegisterViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
