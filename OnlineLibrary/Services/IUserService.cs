@@ -17,6 +17,6 @@ namespace OnlineLibrary.Services
         public Task<GetByIdDTO> GetUserById(int id);
         public Task<List<Member>> GetUsers();
 
-        public Task<GetByIdDTO> Login(string membershipId, string password);
+        public Task<GetByIdDTO> Login(LoginDTO login);
     }
 }

@@ -30,7 +30,7 @@ namespace OnlineLibrary.Services
                 }
                 return false;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
@@ -58,9 +58,17 @@ namespace OnlineLibrary.Services
 
         async Task<GetByIdDTO> IUserService.GetUserById(int id)
         {
+            var response= await _httpClient.GetFromJsonAsync<GetByIdDTO>($"/api/User/{id}");
+            if (response != null && response.Id !=0)
+            {
+                return response;
+            }
+            return new GetByIdDTO()
+            {
+                Id = 0
+            };
+            //   return  await _httpClient.GetFromJsonAsync<GetByIdDTO>($"/api/User/{id}");
 
-           return  await _httpClient.GetFromJsonAsync<GetByIdDTO>($"/api/User/{id}");
-           
         }
 
         async Task<List<Member>> IUserService.GetUsers()
@@ -68,14 +76,10 @@ namespace OnlineLibrary.Services
             return await _httpClient.GetFromJsonAsync<List<Member>>("/api/User");
         }
 
-        async Task<GetByIdDTO> IUserService.Login(string membershipId, string password)
+        async Task<GetByIdDTO> IUserService.Login(LoginDTO login)
         {
            
-                LoginDTO login = new()
-                {
-                    Membership_Id = membershipId,
-                    Password = password
-                };
+   
                 var response = await _httpClient.PostAsJsonAsync("/api/User/Login", login);
             if (response.IsSuccessStatusCode)
             {
