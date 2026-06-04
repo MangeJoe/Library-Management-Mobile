@@ -6,6 +6,7 @@ namespace OnlineLibrary
 {
     public static class MauiProgram
     {
+      
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
@@ -23,11 +24,15 @@ namespace OnlineLibrary
 
             /* f your ViewModel has a parameterless constructor and does not require complex services, 
            * you can instantiate it directly inside your XAML layout file*/
-            builder.Services.AddTransient<RegisterPage>();
-            builder.Services.AddTransient<RegisterViewModel>();
+       
+         builder.Services.AddTransient<RegisterViewModel>();
+         //  builder.Services.AddTransient<RegisterPage>();
+
+            //  builder.Services.AddTransient<LoginPage>();
+            //    builder.Services.AddTransient<LoginViewModel>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
