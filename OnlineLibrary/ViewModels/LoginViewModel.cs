@@ -6,6 +6,7 @@ using OnlineLibrary.Services;
 using OnlineLibrary.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,9 @@ namespace OnlineLibrary.ViewModels
     {
         private readonly IUserService _service;
         private Member member;
-        
-        public string Membership_Id {get=>member.Membership_Id;}
-        public string Password { get=>member.Password; }
+
+        public string Membership_Id { get => member.Membership_Id; }
+        public string Password { get => member.Password; }
 
         public ICommand SignInCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -34,7 +35,7 @@ namespace OnlineLibrary.ViewModels
 
         private async Task CancelLogin()
         {
-            await Shell.Current.GoToAsync("..");
+            //  await Shell.Current.GoToAsync("");
         }
 
         private async Task Login()
@@ -44,15 +45,26 @@ namespace OnlineLibrary.ViewModels
                 Membership_Id = member.Membership_Id,
                 Password = member.Password,
             };
-            GetByIdDTO getByIdDTO = await _service.Login(loginDTO);
-
-            if (getByIdDTO != null && getByIdDTO.Id != 0)
+            try
             {
-                await Shell.Current.GoToAsync($"{nameof(IndexPage)}?userId={getByIdDTO.Id}");
-            }
-            await Shell.Current.DisplayAlert("error", "password or membershipId is incorrect", "Ok");
-        }
+                GetByIdDTO getByIdDTO = await _service.Login(loginDTO);
 
-        
+                if (getByIdDTO != null && getByIdDTO.Id != 0)
+                {
+                    await Shell.Current.GoToAsync($"{nameof(IndexPage)}?userId={getByIdDTO.Id}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await Shell.Current.DisplayAlert("error", "password or membershipId is incorrect", "Ok");
+
+            }
+
+
+
+        }
     }
+
 }
