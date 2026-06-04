@@ -2,6 +2,7 @@
 using OnlineLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
@@ -21,37 +22,24 @@ namespace OnlineLibrary.Services
         }
         async Task<bool> IUserService.CreateUser(OverallUser Ouser)
         {
-            try
-            {
+       
                 var response = await _httpClient.PostAsJsonAsync("/api/User", Ouser);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
-                }
-                return false;
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
+                } return false;
+            
            
             
         }
 
         async Task<bool> IUserService.DeleteUser(int id)
         {
-            try
-            {
                 var response = await _httpClient.DeleteAsync($"/api/User/{id}");
                 if (response.IsSuccessStatusCode)
                     return true;
                 return false;
-            }
-            catch (Exception ex) 
-            {
-                await Shell.Current.DisplayAlert("error", ex.Message, "Ok");
-                return false;
-            }
+          
            
 
         }
