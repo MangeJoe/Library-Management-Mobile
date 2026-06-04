@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:OnlineLibrary.ViewModels"
              x:DataType="viewModels:RegisterViewModel"
              Title="Sign Up">
-    
+ <!--   
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             
@@ -47,5 +47,5 @@
                     Command="{Binding CancelCommand}"/>
 
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView> -->
 </ContentPage>
