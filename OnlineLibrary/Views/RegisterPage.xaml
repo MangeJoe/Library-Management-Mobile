@@ -2,11 +2,50 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineLibrary.Views.RegisterPage"
-             Title="RegisterPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewModels="clr-namespace:OnlineLibrary.ViewModels"
+             x:DataType="viewModels:RegisterViewModel"
+             Title="Sign Up">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            
+            <Label Text="Create Account"
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+
+            <Entry x:Name="txtName"
+                   Placeholder="enter your name"
+                   Text="{Binding Name}"
+                   />
+            <Entry x:Name="txtPNumber"
+                   Placeholder="enter you phone number"
+                   Text="{Binding Phone_Number}"/>
+
+            <Entry x:Name="txtEmail"
+                     Placeholder="enter your email"
+                     Text="{Binding Email}"/>
+            
+            <Entry x:Name="txtPassword"
+                   Placeholder="enter password"
+                   Text="{Binding Password}"/>
+            
+            <Entry x:Name="txtConfirmPassword"
+                   Placeholder="confirm your password"
+                   Text="{Binding ConfirmPassword}"/>
+            
+            <Entry x:Name=" txtAddress" 
+                   Placeholder="enter your address"
+                   Text="{Binding Address}"/>
+            
+            <Button x:Name="btnCreate"
+                    Text="Create"
+                    Command="{Binding RegisterCommand}" />
+
+            <Button x:Name="btnCancel" 
+                    Text="Cancel"
+                    Command="{Binding CancelCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
