@@ -21,13 +21,20 @@ namespace OnlineLibrary.ViewModels
         public string Membership_Id {get=>member.Membership_Id;}
         public string Password { get=>member.Password; }
 
-        public ICommand LoginCommand { get; set; }
+        public ICommand SignInCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         public LoginViewModel(IUserService service)
         {
             _service = service;
             member = new Member();
-            LoginCommand = new AsyncRelayCommand(Login);
+            SignInCommand = new AsyncRelayCommand(Login);
+            CancelCommand = new AsyncRelayCommand(CancelLogin);
+        }
+
+        private async Task CancelLogin()
+        {
+            await Shell.Current.GoToAsync("..");
         }
 
         private async Task Login()

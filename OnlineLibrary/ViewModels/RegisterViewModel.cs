@@ -2,11 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using OnlineLibrary.Models;
 using OnlineLibrary.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 
@@ -68,8 +63,9 @@ namespace OnlineLibrary.ViewModels
                     OnPropertyChanged();
                 }
             } 
-        } 
-
+        }
+        public string ConfirmPassword;
+       
         public DateTime CreatedAt
         {
             get => member.CreatedAt;
@@ -137,14 +133,22 @@ namespace OnlineLibrary.ViewModels
 
 
         public ICommand RegisterCommand { get;private set; }
+        public ICommand CancelCommand { get;private set; }
         public RegisterViewModel(IUserService service)
         {
             member = new Member();
             _service = service;
-            RegisterCommand = new AsyncRelayCommand(Register);
+            RegisterCommand = new AsyncRelayCommand(RegisterUser);
+            CancelCommand = new AsyncRelayCommand(CancelCreation);
+            ConfirmPassword = "";
         }
 
-        private async Task Register()
+        private async Task CancelCreation()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async Task RegisterUser()
         {
             OverallUser NewMember = new()
             {
