@@ -65,8 +65,20 @@ namespace OnlineLibrary.ViewModels
                 }
             } 
         }
-        public string ConfirmPassword;
-       
+        public string _confirmPassword=string.Empty;
+        public string ConfirmPassword
+        {
+            get => _confirmPassword;
+            set
+            {
+                if (_confirmPassword != value)
+                {
+                    _confirmPassword = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public DateTime CreatedAt
         {
             get => member.CreatedAt;
@@ -78,18 +90,21 @@ namespace OnlineLibrary.ViewModels
                     OnPropertyChanged();
                 }
             }
+
         }
+ 
         public string Membership_Id
         {
             get => member.Membership_Id;
             set
             {
-                if(member.Membership_Id != value)
+                if (member.Membership_Id != value)
                 {
                     member.Membership_Id = value;
                     OnPropertyChanged();
                 }
             }
+
         }
 
         public string Address
@@ -116,11 +131,13 @@ namespace OnlineLibrary.ViewModels
                     OnPropertyChanged();
                 }
             }
+
         }
 
         public string Status
         {
             get => member.Status;
+
             set
             {
                 if (member.Status != value)
@@ -129,6 +146,7 @@ namespace OnlineLibrary.ViewModels
                     OnPropertyChanged();
                 }
             }
+
         }
 
 
@@ -141,12 +159,12 @@ namespace OnlineLibrary.ViewModels
             _service = service;
             RegisterCommand = new AsyncRelayCommand(RegisterUser);
             CancelCommand = new AsyncRelayCommand(CancelCreation);
-            ConfirmPassword = "";
+            
         }
 
         private async Task CancelCreation()
         {
-           // await Shell.Current.GoToAsync("");
+            await Shell.Current.GoToAsync(nameof(IndexPage));
         }
 
         private async Task RegisterUser()
@@ -165,6 +183,12 @@ namespace OnlineLibrary.ViewModels
             };
             try
             {
+                if (NewMember.Password != ConfirmPassword)
+                {
+                    await Shell.Current.DisplayAlert("error", "password do not match", "Ok");
+                    return;
+                }
+
                 bool response = await _service.CreateUser(NewMember);
                 if (response)
                 {

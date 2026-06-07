@@ -1,4 +1,5 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using OnlineLibrary.DTOs;
 using OnlineLibrary.Models;
@@ -14,13 +15,34 @@ using System.Windows.Input;
 
 namespace OnlineLibrary.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel:ObservableObject
     {
         private readonly IUserService _service;
         private Member member;
 
-        public string Membership_Id { get => member.Membership_Id; }
-        public string Password { get => member.Password; }
+        public string MemberId = "";
+        public string Membership_Id { get => MemberId; 
+            set
+            {
+                if (MemberId != value)
+                {
+                    MemberId = value;
+                    OnPropertyChanged();
+                }
+            }
+       }
+        public string _Password=string.Empty;
+        public string Password { 
+            get => _Password;
+            set
+            {
+                if (_Password != value)
+                {
+                    _Password = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public ICommand SignInCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -35,15 +57,15 @@ namespace OnlineLibrary.ViewModels
 
         private async Task CancelLogin()
         {
-            //  await Shell.Current.GoToAsync("");
+              await Shell.Current.GoToAsync(nameof(IndexPage));
         }
 
         private async Task Login()
         {
-            LoginDTO loginDTO = new()
+            LoginDTO loginDTO = new LoginDTO
             {
-                Membership_Id = member.Membership_Id,
-                Password = member.Password,
+                Membership_Id = MemberId,
+                Password = _Password,
             };
             try
             {
