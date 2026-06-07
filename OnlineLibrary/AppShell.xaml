@@ -6,25 +6,21 @@
     xmlns:views="clr-namespace:OnlineLibrary.Views"
     Title="OnlineLibrary"
      Shell.FlyoutBehavior="Disabled">
-     
-<ShellContent
-          Title="Register"
-          ContentTemplate="{DataTemplate views:RegisterPage}"
-          Route="RegisterPage"/>
 
-    <!--   <TabBar>
-<ShellContent
+
+    <TabBar>
+        <ShellContent
           Title="Register"
           ContentTemplate="{DataTemplate views:RegisterPage}"
           Route="RegisterPage"/>
-      <ShellContent
+        <ShellContent
           Title="Home"
           ContentTemplate="{DataTemplate views:IndexPage}"
           Route="IndexPage" />
 
-      
-  </TabBar>-->
-    
-    
+
+    </TabBar>
+
+
 
 </Shell>
