@@ -10,12 +10,19 @@ namespace OnlineLibrary.Models
 {
     public class Member :User
     {
-        public string Membership_Id { get; set; } = string.Empty;
+        Random rand =new Random();
+        public string Membership_Id { get; set; }
 
         public string Address { get; set; } = string.Empty;
 
-        public int Borrow_Limit { get; set; }
+        public int Borrow_Limit { get; set; } = 10;
 
-        public string Status { get; set; } = string.Empty;
+        public string Status { get; set; } = "Active";
+
+
+      public Member()
+        {
+            Membership_Id= "226"+rand.Next(10,100);
+        }
     }
 }
