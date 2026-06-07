@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using OnlineLibrary.Services;
 using OnlineLibrary.ViewModels;
 using OnlineLibrary.Views;
 
@@ -21,15 +22,16 @@ namespace OnlineLibrary
              * you can instantiate it directly inside your XAML layout file*/
 
             builder.Services.AddSingleton<HttpClient>();
+            builder.Services.AddSingleton<IUserService, UserService>();
 
             /* f your ViewModel has a parameterless constructor and does not require complex services, 
            * you can instantiate it directly inside your XAML layout file*/
-       
-         builder.Services.AddTransient<RegisterViewModel>();
-         //  builder.Services.AddTransient<RegisterPage>();
+             builder.Services.AddTransient<RegisterPage>();
+             builder.Services.AddTransient<RegisterViewModel>();
 
-            //  builder.Services.AddTransient<LoginPage>();
-            //    builder.Services.AddTransient<LoginViewModel>();
+
+              builder.Services.AddTransient<LoginPage>();
+                builder.Services.AddTransient<LoginViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

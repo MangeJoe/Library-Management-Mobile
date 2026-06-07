@@ -15,7 +15,7 @@ namespace OnlineLibrary.Services
         private readonly HttpClient _httpClient;
         public UserService()
         {
-            _httpClient = new()
+            _httpClient = new HttpClient
             {
                 BaseAddress= new Uri("https://localhost:7196")
             };
