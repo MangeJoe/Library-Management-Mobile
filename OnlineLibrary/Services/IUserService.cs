@@ -1,6 +1,6 @@
 ﻿
 using OnlineLibrary.DTOs;
-using OnlineLibrary.Models;
+using OnlineLibrary.Models.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,6 @@ namespace OnlineLibrary.Services
         public Task<bool> DeleteUser(int id);
         public Task<GetByIdDTO> GetUserById(int id);
         public Task<List<Member>> GetUsers();
-
         public Task<GetByIdDTO> Login(LoginDTO login);
     }
 }
