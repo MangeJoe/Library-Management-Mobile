@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineLibrary.Models
+namespace OnlineLibrary.Models.UserModels
 {
     public class OverallUser
     {
