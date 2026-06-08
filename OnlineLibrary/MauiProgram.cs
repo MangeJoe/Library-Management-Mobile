@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using OnlineLibrary.Services;
-using OnlineLibrary.ViewModels;
+using OnlineLibrary.ViewModels.UserViewModels;
 using OnlineLibrary.Views;
 
 namespace OnlineLibrary
