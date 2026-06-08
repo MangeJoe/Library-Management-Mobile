@@ -1,4 +1,4 @@
-using OnlineLibrary.ViewModels;
+using OnlineLibrary.ViewModels.UserViewModels;
 
 namespace OnlineLibrary.Views;
 

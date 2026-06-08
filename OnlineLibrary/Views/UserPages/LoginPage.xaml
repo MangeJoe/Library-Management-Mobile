@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineLibrary.Views.LoginPage"
-             xmlns:viewModels="clr-namespace:OnlineLibrary.ViewModels"
+             xmlns:viewModels="clr-namespace:OnlineLibrary.ViewModels.UserViewModels"
              x:DataType="viewModels:LoginViewModel"
              Title="Sing In">
     <VerticalStackLayout Padding="20" Spacing="15">
@@ -28,6 +28,21 @@
                     Command="{Binding CancelCommand}"/>
 
         </Grid>
+        <Label >
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="you don't have account yet?"/>
+                    <Span Text="Sign Up"
+                          TextColor="Orange"
+                          TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SignUpTapped"/>
+                        </Span.GestureRecognizers>
+                    </Span>
+                          
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
              
        
                 

@@ -1,4 +1,4 @@
-using OnlineLibrary.ViewModels;
+using OnlineLibrary.ViewModels.UserViewModels;
 
 namespace OnlineLibrary.Views;
 
@@ -9,4 +9,9 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 		BindingContext=loginViewModel;
 	}
+
+    private async void SignUpTapped(object sender, TappedEventArgs e)
+    {
+		await Shell.Current.GoToAsync(nameof(RegisterPage));
+    }
 }
