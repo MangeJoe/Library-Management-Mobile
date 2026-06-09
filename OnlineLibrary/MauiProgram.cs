@@ -23,10 +23,11 @@ namespace OnlineLibrary
 
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddSingleton< BookService>();
 
             /* f your ViewModel has a parameterless constructor and does not require complex services, 
            * you can instantiate it directly inside your XAML layout file*/
-             builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<RegisterPage>();
              builder.Services.AddTransient<RegisterViewModel>();
 
 
