@@ -164,7 +164,7 @@ namespace OnlineLibrary.ViewModels.UserViewModels
 
         private async Task CancelCreation()
         {
-            await Shell.Current.GoToAsync(nameof(IndexPage));
+            await Shell.Current.GoToAsync("..");
         }
 
         private async Task RegisterUser()

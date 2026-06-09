@@ -57,7 +57,7 @@ namespace OnlineLibrary.ViewModels.UserViewModels
 
         private async Task CancelLogin()
         {
-              await Shell.Current.GoToAsync(nameof(IndexPage));
+              await Shell.Current.GoToAsync("..");
         }
 
         private async Task Login()
