@@ -18,5 +18,7 @@ namespace OnlineLibrary.Models.BookModels
         public string Publisher { get; set; } = string.Empty;
         public DateTime Publication_Date { get; set; } = DateTime.Now;
         public string Availability_Status { get; set; } = string.Empty;
+
+        public string BookImage {  get; set; } = string.Empty;
     }
 }
