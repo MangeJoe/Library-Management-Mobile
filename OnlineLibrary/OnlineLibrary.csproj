@@ -66,6 +66,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\BookPages\AddBookPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\BookPages\BookCataloguePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
