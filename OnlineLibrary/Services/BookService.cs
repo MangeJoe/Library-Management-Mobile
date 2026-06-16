@@ -99,9 +99,19 @@ namespace OnlineLibrary.Services
             return Booklist;
         }
 
+        public async Task<Book?> GetBook(int bookId)
+        {
+            var response = await _httpClient.GetFromJsonAsync<Book>($"/api/Book{bookId}");
+            if (response != null)
+            {
+                return response;
+            }
+            return null;
+        }
+
         ///////////////////////////////////////--Book_Copy--////////////////////////////////////////////////////////////////
 
-        public async Task<ResponseDTO> AddBookCopy(Book book)
+        public async Task<ResponseDTO> AddBookCopy(BookCopy book)
         {
             var response = await _httpClient.PostAsJsonAsync("/api/BookCopy", book);
             if (response.IsSuccessStatusCode)
@@ -123,7 +133,7 @@ namespace OnlineLibrary.Services
             };
         }
 
-        public async Task<ResponseDTO> UpdateBookCopy(Book book)
+        public async Task<ResponseDTO> UpdateBookCopy(BookCopy book)
         {
             var response = await _httpClient.PutAsJsonAsync("/api/BookCopy", book);
             if (response.IsSuccessStatusCode)
