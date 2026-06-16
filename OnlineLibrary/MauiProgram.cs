@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using OnlineLibrary.Services;
+using OnlineLibrary.ViewModels.BookViewModels;
 using OnlineLibrary.ViewModels.UserViewModels;
 using OnlineLibrary.Views;
+using OnlineLibrary.Views.BookPages;
 
 namespace OnlineLibrary
 {
@@ -30,8 +32,14 @@ namespace OnlineLibrary
             builder.Services.AddTransient<RegisterPage>();
              builder.Services.AddTransient<RegisterViewModel>();
 
+            builder.Services.AddTransient<AddBookPage>();
+            builder.Services.AddTransient<AddBookViewModel>();
 
-              builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<BookDetailsPage>();
+            builder.Services.AddTransient<BookDetailsViewModel>();
+
+
+            builder.Services.AddTransient<LoginPage>();
                 builder.Services.AddTransient<LoginViewModel>();
 
 #if DEBUG
